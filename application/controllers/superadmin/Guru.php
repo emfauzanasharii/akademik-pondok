@@ -1,0 +1,153 @@
+<?php
+class Guru extends CI_Controller{
+	function __construct(){
+		parent::__construct();
+		if($this->session->userdata('masuk') !=TRUE){
+            $url=base_url('default_controller');
+            redirect($url);
+        };
+		$this->load->model('m_guru');
+		$this->load->model('m_pelajaran');
+		$this->load->model('m_pengguna');
+		$this->load->library('upload');
+	}
+
+
+	function index(){
+		$x['data']=$this->m_guru->get_all_guru();
+		$x['mapels']=$this->m_pelajaran->get_all_pelajaran();
+		// return print_r($x['mapel']);
+		$this->load->view('superadmin/v_guru1',$x);
+	}
+	
+	function simpan_guru(){
+				$config['upload_path'] = './assets/images/foto_guru/'; //path folder
+	            $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
+	            $config['encrypt_name'] = FALSE; //nama yang terupload nantinya
+	            $config['max_size']     = 3024; // 3MB
+	            $this->upload->initialize($config);
+	            if(!empty($_FILES['filefoto']['name']))
+	            {
+	                if ($this->upload->do_upload('filefoto'))
+	                {
+	                        $gbr = $this->upload->data();
+	                        //Compress Image
+	                        $config['image_library']='gd2';
+	                        $config['source_image']='./assets/images/foto_guru/'.$gbr['file_name'];
+	                        $config['create_thumb']= FALSE;
+	                        $config['maintain_ratio']= FALSE;
+	                        $config['quality']= '60%';
+	                        $config['width']= 300;
+	                        $config['height']= 300;
+	                        $config['new_image']= './assets/images/foto_guru/'.$gbr['file_name'];
+	                        $this->load->library('image_lib', $config);
+	                        $this->image_lib->resize();
+
+	                        $photo=$gbr['file_name'];
+							$nip=strip_tags($this->input->post('xnip'));
+							$nama=strip_tags($this->input->post('xnama'));
+							$jenkel=strip_tags($this->input->post('xjenkel'));
+							$tmp_lahir=strip_tags($this->input->post('xtmp_lahir'));
+							$tgl_lahir=strip_tags($this->input->post('xtgl_lahir'));
+							$mapel=strip_tags($this->input->post('xmapel'));
+
+							$this->m_guru->simpan_guru($nip,$nama,$jenkel,$tmp_lahir,$tgl_lahir,$mapel,$photo);
+							echo $this->session->set_flashdata('msg','success');
+							redirect('superadmin/guru');
+					}else{
+	                    echo $this->session->set_flashdata('msg','warning');
+	                    redirect('superadmin/guru');
+	                }
+	                 
+	            }else{
+	            	$nip=strip_tags($this->input->post('xnip'));
+					$nama=strip_tags($this->input->post('xnama'));
+					$jenkel=strip_tags($this->input->post('xjenkel'));
+					$tmp_lahir=strip_tags($this->input->post('xtmp_lahir'));
+					$tgl_lahir=strip_tags($this->input->post('xtgl_lahir'));
+					$mapel=strip_tags($this->input->post('xmapel'));
+
+					$this->m_guru->simpan_guru_tanpa_img($nip,$nama,$jenkel,$tmp_lahir,$tgl_lahir,$mapel);
+					echo $this->session->set_flashdata('msg','success');
+					redirect('superadmin/guru');
+				}
+				
+	}
+	
+	function update_guru(){
+				
+	            $config['upload_path'] = './assets/images/foto_guru/'; //path folder
+	            $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
+	            $config['encrypt_name'] = FALSE; //nama yang terupload nantinya
+
+	            $this->upload->initialize($config);
+	            if(!empty($_FILES['filefoto']['name']))
+	            {
+	                if ($this->upload->do_upload('filefoto'))
+	                {
+	                        $gbr = $this->upload->data();
+	                        //Compress Image
+	                        $config['image_library']='gd2';
+	                        $config['source_image']='./assets/images/foto_guru/'.$gbr['file_name'];
+	                        $config['create_thumb']= FALSE;
+	                        $config['maintain_ratio']= FALSE;
+	                        $config['quality']= '60%';
+	                        $config['width']= 300;
+	                        $config['height']= 300;
+	                        $config['new_image']= './assets/images/foto_guru/'.$gbr['file_name'];
+	                        $this->load->library('image_lib', $config);
+	                        $this->image_lib->resize();
+	                        $gambar=$this->input->post('gambar');
+							$path='./assets/images/'.$gambar;
+							unlink($path);
+
+	                        $photo=$gbr['file_name'];
+	                        $kode=$this->input->post('kode');
+							$nip=strip_tags($this->input->post('xnip'));
+							$nama=strip_tags($this->input->post('xnama'));
+							$jenkel=strip_tags($this->input->post('xjenkel'));
+							$tmp_lahir=strip_tags($this->input->post('xtmp_lahir'));
+							$tgl_lahir=strip_tags($this->input->post('xtgl_lahir'));
+							$mapel=strip_tags($this->input->post('xmapel'));
+							$status=strip_tags($this->input->post('xstatus'));
+
+							$this->m_guru->update_guru($kode,$nip,$nama,$jenkel,$tmp_lahir,$tgl_lahir,$mapel,$status,$photo);
+							echo $this->session->set_flashdata('msg','info');
+							redirect('superadmin/guru');
+	                    
+	                }else{
+	                    echo $this->session->set_flashdata('msg','warning');
+	                    redirect('superadmin/guru');
+	                }
+	                // update tanpa foto
+	            }else{
+							$kode=$this->input->post('kode');
+							$nip=strip_tags($this->input->post('xnip'));
+							$nama=strip_tags($this->input->post('xnama'));
+							$jenkel=strip_tags($this->input->post('xjenkel'));
+							$tmp_lahir=strip_tags($this->input->post('xtmp_lahir'));
+							$tgl_lahir=strip_tags($this->input->post('xtgl_lahir'));
+							$mapel=strip_tags($this->input->post('xmapel'));
+							$status=strip_tags($this->input->post('xstatus'));
+
+							$this->m_guru->update_guru_tanpa_img($kode,$nip,$nama,$jenkel,$tmp_lahir,$tgl_lahir,$mapel,$status);
+							echo $this->session->set_flashdata('msg','info');
+							redirect('superadmin/guru');
+	            } 
+
+	}
+
+	// function hapus_guru(){
+	// 	$kode=$this->input->post('kode');
+	// 	$gambar=$this->input->post('gambar');
+	// 	$path='./assets/images/'.$gambar;
+	// 	unlink($path);
+	// 	$this->m_guru->hapus_guru($kode);
+	// 	echo $this->session->set_flashdata('msg','success-hapus');
+	// 	redirect('superadmin/guru');
+	// }
+
+
+
+
+}

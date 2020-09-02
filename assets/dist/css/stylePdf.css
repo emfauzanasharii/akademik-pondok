@@ -1,0 +1,31 @@
+#foto-cop{
+            width: 100px;
+            height: 100px; 
+         
+        }
+        #text-cop{
+        float: right;
+        clear: both;
+        text-align: center
+
+        }
+        #cop{
+            width: 100px;
+            height: 100px;
+        }
+        #tabel{
+            border: solid;
+            margin-top: 30px;
+            align-items: center;
+        }
+        #tblststus{
+            border: solid;
+            margin-top: 30px;
+            align-items: center;
+            margin: 20 auto;
+        }
+        th,td{
+            font-size: 25px;
+            font-family: serif;
+            padding:10px;
+        }
