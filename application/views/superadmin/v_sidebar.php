@@ -13,7 +13,7 @@ $jum_pesan=$query->num_rows();
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu">
       <li class="header">Menu Utama</li>
-      <li class="active">
+      <li>
         <a href="<?php echo base_url().'superadmin/dashboard'?>">
           <i class="fa fa-home"></i> <span>Dashboard</span>
           <span class="pull-right-container">

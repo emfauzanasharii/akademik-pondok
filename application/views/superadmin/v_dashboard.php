@@ -13,7 +13,7 @@
    <title>Ponpes Ash-Sholihah | Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="shorcut icon" type="text/css" href="<?php echo base_url().'assets/images/favicon.png'?>">
+<link rel="shorcut icon" type="text/css" href="<?php echo base_url().'assets/images/favicon.png'?>">
   <!-- Bootstrap 3.3.6 -->
   <link rel="stylesheet" href="<?php echo base_url().'assets/bootstrap/css/bootstrap.min.css'?>">
   <!-- Font Awesome -->
@@ -34,7 +34,7 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-   <?php
+  <?php
     $this->load->view('superadmin/v_header');
   ?>
   <!-- Left side column. contains the logo and sidebar -->
@@ -198,11 +198,7 @@
   $this->load->view('superadmin/v_footer')
  ?>
 
-  <!-- Control Sidebar -->
-  <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
-  <div class="control-sidebar-bg"></div>
+
 </div>
 <!-- ./wrapper -->
 

@@ -24,7 +24,6 @@ class Pengguna extends CI_Controller{
 	function profil($id){
 		$kode=$this->session->userdata('idadmin');
 		$x['user']=$this->m_pengguna->get_pengguna_login($kode);
-		$x['data']=$this->m_pengguna->get_all_pengguna();
 		$x['profile'] = $this->m_pengguna->get_profile($id);
 		$this->load->view('superadmin/v_profil',$x);
 	}
