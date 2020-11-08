@@ -9,7 +9,10 @@ function get_profile($id){
 		return $hsl;	
 	}
 
-
+	function get_data($idsantri){
+		$hsl=$this->db->query("SELECT * FROM tbl_siswa where siswa_id='$idsantri'");
+		return $hsl->row();
+	}
 	function ambil_siswa(){
 		$hsl=$this->db->query("SELECT * FROM tbl_siswa WHERE siswa_id='$idsantri'");
 		return$hsl;
@@ -25,6 +28,11 @@ function get_profile($id){
 	}
 
 	function get_siswa_by_nilai($id,$mapel_id){
+		$hsl=$this->db->query("SELECT * FROM tbl_siswa left JOIN tbl_nilai ON nilai_siswaId=siswa_id and nilai_mapelId='$mapel_id' WHERE siswa_guru_id='$id' and siswa_status=1 " );
+		return $hsl;
+	}
+
+	function edit_siswa_by_nilai($id,$mapel_id){
 		$hsl=$this->db->query("SELECT * FROM tbl_siswa left JOIN tbl_nilai ON nilai_siswaId=siswa_id and nilai_mapelId='$mapel_id' WHERE siswa_guru_id='$id' and siswa_status=1 " );
 		return $hsl;
 	}

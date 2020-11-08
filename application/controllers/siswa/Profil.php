@@ -59,6 +59,7 @@ function update_siswa(){
 							$konfirm_password=$this->input->post('xpassword2');
                             $lihat_password=$password;
 
+
 								if ($password <> $konfirm_password) {
      							echo $this->session->set_flashdata('msg','error');
 	               				redirect('siswa/profil');
@@ -66,9 +67,6 @@ function update_siswa(){
 	               				$this->m_siswa->update_siswa($kode,$nis,$nama,$jenkel,$password,$lihat_password,$photo);
 							echo $this->session->set_flashdata('msg','info');
 							redirect('siswa/home');
-
-							
-	                    
 	               			 }
 
 	           		}else{
@@ -84,7 +82,8 @@ function update_siswa(){
 							$password=$this->input->post('xpassword');
                             $konfirm_password=$this->input->post('xpassword2');
                             $lihat_password=$password;
-
+                            // print_r($password);
+                            // die();
 								if ($password <> $konfirm_password) {
      							echo $this->session->set_flashdata('msg','error');
 	               				redirect('siswa/profil');

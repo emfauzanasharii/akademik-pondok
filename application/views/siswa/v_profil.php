@@ -59,7 +59,7 @@ $jum_pesan=$query->num_rows();
               $siswa_nama=$profile->siswa_nama;
               $siswa_nis=$profile->siswa_nis;
               $siswa_jenkel=$profile->siswa_jenkel;
-              $siswa_password=$profile->siswa_password;
+              $siswa_password=$profile->siswa_password_lihat;
               $siswa_photo=$profile->siswa_photo;
             ?>
     <div class="panel panel-default">
@@ -73,6 +73,7 @@ $jum_pesan=$query->num_rows();
                                         <label for="inputUserName" class="col-sm-4 control-label">Nama</label>
                                         <div class="col-sm-7">
                       <input type="hidden" name="kode" value="<?php echo $siswa_id;?>"/>
+                       <input type="hidden" name="xnis" value="<?php echo $siswa_nis;?>"/>
                                             <input type="text" name="xnama" class="form-control" id="inputUserName" value="<?php echo $siswa_nama;?>" placeholder="Nama Lengkap" required>
                                         </div>
                                     </div>
@@ -109,13 +110,13 @@ $jum_pesan=$query->num_rows();
                                     <div class="form-group">
                                         <label for="inputPassword3" class="col-sm-4 control-label">Password</label>
                                         <div class="col-sm-7">
-                                            <input type="password" name="xpassword" class="form-control" id="inputPassword3" placeholder="Password">
+                                            <input type="password" name="xpassword" class="form-control" id="inputPassword3" value="<?php echo $siswa_password ?>" placeholder="Password">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputPassword4" class="col-sm-4 control-label">Ulangi Password</label>
                                         <div class="col-sm-7">
-                                            <input type="password" name="xpassword2" class="form-control" id="inputPassword4" placeholder="Ulangi Password">
+                                            <input type="password" name="xpassword2" value="<?php echo $siswa_password; ?>" class="form-control" id="inputPassword4" placeholder="Ulangi Password">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -128,7 +129,7 @@ $jum_pesan=$query->num_rows();
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
+              
                         <button type="submit" class="btn btn-primary btn-flat" id="simpan">Update</button>
                     </div>
                     </form>

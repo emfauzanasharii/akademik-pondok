@@ -41,7 +41,7 @@ $jum_pesan=$query->num_rows();
         </a>
         <ul class="treeview-menu">
           <li><a href="<?php echo base_url().'superadmin/guru'?>"><i class="fa fa-graduation-cap"></i>Data Guru</a></li>
-          <li><a href="<?php echo base_url().'superadmin/siswa'?>"><i class="fa fa-users"></i> Data Siswa</a></li>
+          <li><a href="<?php echo base_url().'superadmin/siswa'?>"><i class="fa fa-users"></i> Data Santri</a></li>
            <li><a href="<?php echo base_url().'superadmin/kelas'?>"><i class="  fa fa-institution"></i> Data Kelas</a></li>
           <li><a href="<?php echo base_url().'superadmin/matapelajaran'?>"><i class="fa fa-book"></i> Mata Pelajaran</a></li>
 

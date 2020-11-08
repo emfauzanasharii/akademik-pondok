@@ -8,14 +8,19 @@ class Files extends CI_Controller{
         };
 		$this->load->model('m_files');
 		$this->load->model('m_pengguna');
+		$this->load->model('m_siswa');
 		$this->load->library('upload');
 		$this->load->helper('download');
 	}
 
 
 	function index(){
-			
-		$x['data']=$this->m_files->get_all_files();
+		$idsantri=$this->session->userdata('idsantri');
+		$cek=$this->m_siswa->get_data($idsantri);
+		$wali=$cek->siswa_guru_id;
+		// print_r($wali);
+		// die();
+		$x['data']=$this->m_files->get_all_files($wali);
 		$this->load->view('siswa/v_files',$x);
 	}
 

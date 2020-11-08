@@ -24,6 +24,7 @@ class Siswa extends CI_Controller{
 	function nilai_siswa($mapel_id){
 			$x['data']=$this->m_siswa->get_siswa_by_nilai($_SESSION['idadmin'],$mapel_id);
 			$x['nilai']=$this->m_pelajaran->get_nama_mapel($mapel_id)->row();
+			$x['editnilai']=$this->m_siswa->edit_siswa_by_nilai($_SESSION['idadmin'],$mapel_id);
 			$this->load->view('admin/v_nilai_siswa',$x);
 		
 	}
@@ -37,6 +38,20 @@ class Siswa extends CI_Controller{
 		$nilaiakhir=($nilai1+$nilai2)/2;
 		
 		$this->m_nilai->input_nilai($kode,$nilai_waliId,$mapel_id,$nilai1,$nilai2,$nilaiakhir);
+		echo $this->session->set_flashdata('msg','success');
+		redirect('admin/siswa/nilai_siswa/'.$mapel_id);
+		
+	}
+
+	function edit_nilai(){
+		$kode=$this->input->post('kode');
+		$mapel_id=$this->input->post('mapel_id');
+		$nilai1=strip_tags($this->input->post('xnilai1'));
+		$nilai2=strip_tags($this->input->post('xnilai2'));
+		$nilaiakhir=($nilai1+$nilai2)/2;
+		// print_r($mapel_id);
+		// die();
+		$this->m_nilai->edit_nilai($kode,$nilai1,$nilai2,$nilaiakhir);
 		echo $this->session->set_flashdata('msg','success');
 		redirect('admin/siswa/nilai_siswa/'.$mapel_id);
 		

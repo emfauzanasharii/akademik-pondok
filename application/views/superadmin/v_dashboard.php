@@ -1,10 +1,10 @@
 <!--Counter Inbox-->
-<?php
+<!-- <?php
     $query=$this->db->query("SELECT * FROM tbl_inbox WHERE inbox_status='1'");
     $query2=$this->db->query("SELECT * FROM tbl_komentar WHERE komentar_status='0'");
     $jum_comment=$query2->num_rows();
     $jum_pesan=$query->num_rows();
-?>
+?> -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,9 +27,6 @@
   <link rel="stylesheet" href="<?php echo base_url().'assets/dist/css/skins/_all-skins.min.css'?>">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/plugins/toast/jquery.toast.min.css'?>"/>
   
-
-
-
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -152,8 +149,7 @@
         </div>
         <!-- /.col -->
 <div class="row">
-        <!-- fix for small devices only -->
-        <div class="clearfix visible-sm-block"></div>
+
 
         <div class="col-md-6 col-sm-6 col-xs-12">
           <div class="info-box">

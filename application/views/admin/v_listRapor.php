@@ -105,7 +105,7 @@
                   </td>
                   <td><?php echo $kelas ?></td>
                   <td style="text-align:right;">
-                        <a class="btn btn-primary" href="<?php echo base_url().'admin/rapor/cetak/'.$id ?>"><span class="fa fa-print"> cetak Rapor</span></a>
+                        <a class="btn btn-primary" href="<?php echo base_url().'admin/rapor/cetak/'.$id ?>" target="_blank"><span class="fa fa-print"> cetak Rapor</span></a>
                        
                   </td>
                 </tr>

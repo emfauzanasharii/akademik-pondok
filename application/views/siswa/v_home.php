@@ -49,7 +49,7 @@
 
               <?php
               $id_santri=$this->session->userdata('idsantri');
-              $q=$this->db->query("SELECT * FROM tbl_siswa JOIN tbl_kelas ON siswa_kelas_id=kelas_id JOIN tbl_pengguna on kelas_wali_id=pengguna_id");
+              $q=$this->db->query("SELECT * FROM tbl_siswa JOIN tbl_kelas ON siswa_kelas_id=kelas_id JOIN tbl_pengguna on kelas_wali_id=pengguna_id where siswa_id='$id_santri'");
               $c=$q->row_array();
           ?>
 

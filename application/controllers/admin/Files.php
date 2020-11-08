@@ -34,7 +34,7 @@ class Files extends CI_Controller{
 	
 	function simpan_file(){
 				$config['upload_path'] = './assets/files/'; //path folder
-	            $config['allowed_types'] = 'pdf|doc|docx|ppt|pptx|zip'; //type yang dapat diakses bisa anda sesuaikan
+	            $config['allowed_types'] = 'rtf|pdf|doc|docx|ppt|pptx|zip'; //type yang dapat diakses bisa anda sesuaikan
 	            $config['encrypt_name'] = TRUE; //nama yang terupload nantinya
 	            $config['max_size']  = '2048';
 
@@ -48,16 +48,18 @@ class Files extends CI_Controller{
 							$judul=strip_tags($this->input->post('xjudul'));
 							$deskripsi=$this->input->post('xdeskripsi');
 							$idadmin = $this->session->userdata('idadmin');
+							$status= $this->input->post('bagikan');
+							// print_r($status);
+							// die();
 							// $oleh=strip_tags($this->input->post('xoleh'));
 	
-							$this->m_files->simpan_file($judul,$deskripsi,$idadmin,$file);
+							$this->m_files->simpan_file($judul,$deskripsi,$idadmin,$status,$file);
 							echo $this->session->set_flashdata('msg','success');
 							redirect('admin/files');
 					}else{
 	                    echo $this->session->set_flashdata('msg','warning');
 	                    redirect('admin/files');
 	                }
-	                 
 	            }else{
 					redirect('admin/files');
 				}
@@ -81,10 +83,11 @@ class Files extends CI_Controller{
 	                        $judul=strip_tags($this->input->post('xjudul'));
 							$deskripsi=$this->input->post('xdeskripsi');
 							$oleh=strip_tags($this->input->post('xoleh'));
+							$status= $this->input->post('bagikan');
 							$data=$this->input->post('file');
 							$path='./assets/files/'.$data;
 							unlink($path);
-							$this->m_files->update_file($kode,$judul,$deskripsi,$oleh,$file);
+							$this->m_files->update_file($kode,$judul,$deskripsi,$oleh,$status,$file);
 							echo $this->session->set_flashdata('msg','info');
 							redirect('admin/files');
 	                    

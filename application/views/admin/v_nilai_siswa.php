@@ -94,6 +94,7 @@
                     foreach ($data->result_array() as $i) :
                        $no++;
                        $id=$i['siswa_id'];
+                       $id_=$i['nilai_id'];
                        $nis=$i['siswa_nis'];
                        $nama=$i['siswa_nama'];
                        $jenkel=$i['siswa_jenkel'];
@@ -117,7 +118,8 @@
                   <td><?php echo $nilai2 ?></td>
                   <td><?php echo $nilai_akhir ?></td>
                   <td style="text-align:right;">
-                        <a class="btn btn-primary" data-toggle="modal" data-target="#ModalEdit<?php echo $id;?>" ><span class="fa fa-pencil"> Input Nilai</span></a>
+                        <a class="btn btn-primary" data-toggle="modal" data-target="#ModalInput<?php echo $id;?>" ><span class="fa fa-pencil"> Input Nilai</span></a>
+                         <a class="btn btn-primary" data-toggle="modal" data-target="#ModalEdit<?php echo $id_;?>" ><span class="fa fa-pencil"> Edit Nilai</span></a>
                        
                   </td>
                 </tr>
@@ -157,8 +159,8 @@
                        $nama=$i['siswa_nama'];
                        $jenkel=$i['siswa_jenkel'];
                  ?>
-  <!--Modal Edit Pengguna-->
-        <div class="modal fade" id="ModalEdit<?php echo $id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <!--input nilai-->
+        <div class="modal fade" id="ModalInput<?php echo $id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -206,6 +208,64 @@
         </div>
          <?php endforeach;?>
 
+                 <?php
+                    foreach ($editnilai->result_array() as $i) :
+                       $id=$i['siswa_id'];
+                       $id_=$i['nilai_id'];
+                       $nis=$i['siswa_nis'];
+                       $nama=$i['siswa_nama'];
+                       $jenkel=$i['siswa_jenkel'];
+                       $nilai1=$i['nilai1'];
+                       $nilai2=$i['nilai2'];
+                 ?>
+  <!--input nilai-->
+        <div class="modal fade" id="ModalEdit<?php echo $id_;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><span class="fa fa-close"></span></span></button>
+                        <h4 class="modal-title" id="myModalLabel">Input Nilai <?php echo $nama_mapel; ?></h4>
+                    </div>
+                    <form class="form-horizontal" action="<?php echo base_url().'admin/siswa/edit_nilai'?>" method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                       <input type="hidden" name="kode" value="<?php echo $id_;?>"/>
+                       <input type="hidden" name="mapel_id" value="<?php echo $mapel_id;?>"/>
+                      <div class="form-group">
+                            <label for="inputUserName" class="col-sm-4 control-label">NIS</label>
+                            <div class="col-sm-7">
+                              <input type="text" name="xnis" value="<?php echo $nis;?>" class="form-control" id="inputUserName" placeholder="NIP" readonly>
+                             </div>
+                      </div>
+                      <div class="form-group">
+                            <label for="inputUserName" class="col-sm-4 control-label">Nama</label>
+                            <div class="col-sm-7">
+                              <input type="text" name="xnama" value="<?php echo $nama;?>" class="form-control" id="inputUserName" placeholder="NIP" readonly>
+                             </div>
+                      </div>
+                      <hr>
+                      <div class="form-group">
+                            <label for="inputUserName" class="col-sm-4 control-label">Nilai UTS</label>
+                            <div class="col-sm-7">
+                              <input type="number" max="100" name="xnilai1"  class="form-control" id="inputUserName" placeholder="Nilai 1" value="<?php echo $nilai1 ?>" required autocomplete="off" >
+                             </div>
+                      </div>
+                      <div class="form-group">
+                            <label for="inputUserName" class="col-sm-4 control-label">Nilai UAS</label>
+                            <div class="col-sm-7">
+                              <input type="number" max="100" name="xnilai2"  class="form-control" id="inputUserName" placeholder="Nilai 2" value="<?php echo $nilai2 ?>" required autocomplete="off">
+                             </div>
+                      </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary btn-flat" id="simpan">Edit Nilai</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+         <?php endforeach;?>
 
  
 

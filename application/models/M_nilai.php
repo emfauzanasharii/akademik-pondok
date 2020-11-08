@@ -11,6 +11,11 @@
 		$hsl=$this->db->query("SELECT * FROM tbl_nilai JOIN tbl_mapel on nilai_mapelId=mapel_id WHERE nilai_siswaId='$idsantri'");
 		return $hsl;
 	}
+
+	function edit_nilai($kode,$nilai1,$nilai2,$nilaiakhir){
+		$hsl=$this->db->query("UPDATE tbl_nilai set nilai1='$nilai1', nilai2='$nilai2', nilai_akhir='$nilaiakhir' WHERE nilai_id='$kode'");
+		return $hsl;
+	}
 // 		function lihat_absen($tanggal,$idadmin,$enddate){
 // 		$hsl=$this->db->query("SELECT * FROM tbl_absensi join tbl_siswa on absen_siswa_id=siswa_id WHERE absen_tanggal >= '$tanggal' AND absen_tanggal <= 'enddate' AND absen_guru_id='$idadmin'");
 // 		return $hsl;

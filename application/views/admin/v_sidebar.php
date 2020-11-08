@@ -75,7 +75,7 @@
         </li>
          <li class="sidebar-link">
           <a href="<?php echo base_url().'admin/siswa'?>">
-            <i class="fa fa-users"></i> <span>Data Siswa</span>
+            <i class="fa fa-users"></i> <span>Data Santri</span>
             <span class="pull-right-container">
               <small class="label pull-right"></small>
             </span>
@@ -83,7 +83,7 @@
         </li>
         <li class="sidebar-link">
           <a href="<?php echo base_url().'admin/mapel'?>">
-            <i class="fa fa-book"></i> <span>Mata Pelajaran</span>
+            <i class="fa fa-book"></i> <span>Penilaian</span>
             <span class="pull-right-container">
               <small class="label pull-right"></small>
             </span>

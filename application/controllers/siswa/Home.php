@@ -13,9 +13,10 @@ class Home extends CI_Controller{
 
 
 	function index(){
-		$x['data']=$this->m_siswa->get_all_siswa();
+
 		// $x['data']=$this->m_siswa->get_all_siswa();
-		$this->load->view('siswa/v_home',$x);
+		// $x['data']=$this->m_siswa->get_all_siswa();
+		$this->load->view('siswa/v_home');
 	}
 }
 	

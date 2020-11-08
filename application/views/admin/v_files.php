@@ -146,6 +146,19 @@
                                   <input type="text" name="xjudul" class="form-control" id="inputUserName" placeholder="Judul" required>
                                 </div>
                             </div>
+                         
+                              <div class="form-group">
+                                  <label for="inputUserName" class="col-sm-4 control-label">Bagikan Untuk</label>
+                                  <div class="col-sm-7" style="margin-top: 5px;">
+                                  <select class="mdb-select md-form" name="bagikan">
+                                    <option value="" disabled selected>--</option>
+                                    <option value="1">Santri Kelas</option>
+                                    <option value="2">Web Profil</option>
+                                    <option value="3">Semuanya</option>
+                                  </select>
+                                  </div>
+                              </div>
+                          
                             <div class="form-group">
                                 <label for="inputUserName" class="col-sm-4 control-label">Deskripsi</label>
                                 <div class="col-sm-7">
@@ -180,6 +193,7 @@
                 $tanggal=$i['tanggal'];
                 $download=$i['file_download'];
                 $file=$i['file_data'];
+                $status=$i['file_status'];
             ?>
 	<!--Modal Edit Pengguna-->
         <div class="modal fade" id="ModalEdit<?php echo $id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -200,6 +214,29 @@
                                   <input type="text" name="xjudul" class="form-control" value="<?php echo $judul;?>" id="inputUserName" placeholder="Judul" required>
                                 </div>
                             </div>
+
+                             <div class="form-group">
+                                  <label for="inputUserName" class="col-sm-4 control-label">Bagikan Untuk</label>
+                                  <div class="col-sm-7" style="margin-top: 5px;">
+                                  <select class="mdb-select md-form" name="bagikan">
+                                    <?php 
+                                    if ($status==1):?>
+                                    <option value="<?php echo $status; ?>" disabled selected> Santri Kelas</option>
+                                    <option value="2">Web Profil</option>
+                                    <option value="3">Semuanya</option>
+                                    <?php elseif ($status==2):?>
+                                      <option value="<?php echo $status; ?>" disabled selected> Web Profile</option>
+                                    <option value="1">Santri Kelas</option>
+                                    <option value="3">Semuanya</option>
+                                    <?php else: ?>
+                                      <option value="<?php echo $status; ?>" disabled selected> Semuanya</option>
+                                    <option value="1">Santri Kelas</option>
+                                    <option value="2">Web Profil</option>
+                                  <?php endif; ?>
+                                  </select>
+                                  </div>
+                              </div>
+
                             <div class="form-group">
                                 <label for="inputUserName" class="col-sm-4 control-label">Deskripsi</label>
                                 <div class="col-sm-7">

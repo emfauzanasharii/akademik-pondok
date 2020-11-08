@@ -1,8 +1,8 @@
 <?php 
 class M_files extends CI_Model{
 
-	function get_all_files(){
-		$hsl=$this->db->query("SELECT file_id,file_judul,file_deskripsi,DATE_FORMAT(file_tanggal,'%d/%m/%Y') AS tanggal,file_oleh,file_download,file_data FROM tbl_files ORDER BY file_id DESC");
+	function get_all_files($wali){
+		$hsl=$this->db->query("SELECT file_id,file_judul,file_deskripsi,DATE_FORMAT(file_tanggal,'%d/%m/%Y') AS tanggal,file_oleh,file_download,file_data FROM tbl_files WHERE file_status =3 or file_oleh='$wali' ORDER BY file_id DESC");
 		return $hsl;
 	}
 	function get_files_byAutor($idadmin){
@@ -10,8 +10,8 @@ class M_files extends CI_Model{
 		return $hsl;
 	}
 
-	function simpan_file($judul,$deskripsi,$idadmin,$file){
-		$hsl=$this->db->query("INSERT INTO tbl_files(file_judul,file_deskripsi,file_oleh,file_data) VALUES ('$judul','$deskripsi','$idadmin','$file')");
+	function simpan_file($judul,$deskripsi,$idadmin,$status,$file){
+		$hsl=$this->db->query("INSERT INTO tbl_files(file_judul,file_deskripsi,file_oleh,file_status,file_data) VALUES ('$judul','$deskripsi','$idadmin','$status','$file')");
 		return $hsl;
 	}
 	function update_file($kode,$judul,$deskripsi,$oleh,$file){
